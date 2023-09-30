@@ -1,0 +1,29 @@
+
+<% if @cart_count %>
+window.top.document.getElementById("cart-count").innerHTML = "<%= j @cart_count %>";
+// update count of this product in cart
+document.getElementById("products-in-cart").innerHTML = "<%= j @product_count %> in your cart"
+// update publitas cart count
+parent.postMessage( JSON.stringify(['cartContentChanged', {
+    numItems: <%= j @cart_count %>
+}]), "https://view.publitas.com/" );
+<% end %>
+
+function showBanner() {
+    var banner = document.getElementById('banner');
+
+    // Display the banner
+    banner.classList.remove('hidden');
+    banner.classList.remove('fade-out');
+
+    // After 3 seconds, fade out the banner
+    setTimeout(function() {
+        banner.classList.add('fade-out');
+
+        // After the transition ends (1 second, as set in the CSS), hide the banner
+        setTimeout(function() {
+            banner.classList.add('hidden');
+        }, 1000);
+    }, 3000);
+}
+showBanner();

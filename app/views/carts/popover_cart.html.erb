@@ -1,0 +1,43 @@
+<%= stylesheet_link_tag 'application', media: 'all' %>
+<%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+<h1>Shopping Cart</h1>
+<main>
+  <div class="basket">
+    <div class="basket-labels">
+      <ul>
+        <li class="item item-heading">Item</li>
+        <li class="price">Price</li>
+        <li class="quantity">Quantity</li>
+        <li class="subtotal">Subtotal</li>
+      </ul>
+    </div>
+    <% @cart.cart_items.each do |item| %>
+      <div class="basket-product">
+        <div class="item" id="cart_item_<%= item.id %>">
+          <div class="cart-product-image">
+            <%= image_tag item.product.image_url, alt: item.product.title, class: "product-frame" %>
+          </div>
+          <div class="product-details">
+            <h1><strong><span class="item-quantity"><%= item.quantity %> x </span></strong><%= item.product.title %></h1>
+            <div class="price"><%= number_to_currency(item.product.price, unit: "€") %></div>
+            <% if item.quantity %>
+              <%= form_for item, method: :patch, remote: true, class: "update-quantity" do |f| %>
+                <div class="quantity">
+                  <%= f.number_field :quantity, value: item.quantity, min: 1, class: "quantity-field" %>
+                  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+                  <%= f.submit "Update Quantity", class: "action-button" %>
+                </div>
+              <% end %>
+            <% end %>
+            <div class="subtotal"><%= number_to_currency((item.product.price * item.quantity), unit: "€") %></div>
+          </div>
+        </div>
+        <div class="remove">
+          <%= button_to "Remove",  remove_from_cart_product_path(item.product), method: :delete, remote: true, class: "action-button" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <%= render partial: "cart_side_bar", locals: { cart: @cart } %>
+</main>

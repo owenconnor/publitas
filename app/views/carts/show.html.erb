@@ -1,0 +1,6 @@
+<%= javascript_pack_tag 'shoppingCart', 'data-turbolinks-track': 'reload' %>
+<main>
+  <%= render partial: "cart_list", locals: { cart: @cart } %>
+  <%= render partial: "cart_side_bar", locals: { cart: @cart } %>
+</main>
+

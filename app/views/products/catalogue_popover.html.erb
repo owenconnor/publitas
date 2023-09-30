@@ -1,0 +1,35 @@
+<%= stylesheet_link_tag 'application', media: 'all' %>
+<%= javascript_pack_tag "application", "data-turbo-track": "reload" %>
+
+<div id="banner" class="hidden">Product added to cart</div>
+<div class="card">
+  <div class="photo">
+    <img class="product-image" src=<%= @product.image_url %> alt=<%= @product.title %> />
+  </div>
+  <div class="product-description">
+    <h2><%= @product.title %></h2>
+    <h4></h4>
+    <h1><%= number_to_currency(@product.price, unit: "€") %></h1>
+    <p><%= @product.description %></p>
+    <%= form_tag add_to_cart_product_path(@product), method: :post, remote: true, class: 'button-form' do %>
+      <%= submit_tag 'Add to Cart', class: 'action-button', id:"add-to-cart-button" %>
+      <% if @product_count %>
+        <span id="products-in-cart"><%= @product_count %> in your cart</span>
+        <span id="products-in-cart"><%= link_to "View Cart", popover_cart_path, class: "button" %></span>
+      <% end %>
+    <% end %>
+    <%#= button_to 'Add to Cart', add_to_cart_product_path(@product), method: :post, remote: true, class: 'button', id:"add-to-cart-button" %>
+  </div>
+</div>
+
+
+<script>
+    var productId = <%= @product.id %>;
+    document.getElementById("add-to-cart-button").addEventListener("click", function() {
+        var message = {
+            action: "itemAddedToCart",
+            productId: productId
+        }
+        window.top.postMessage(message, "https://#{ENV['NGROK_HOST']}");
+    });
+</script>

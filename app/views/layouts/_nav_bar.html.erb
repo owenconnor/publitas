@@ -1,0 +1,16 @@
+<nav class="main-nav">
+  <div class="nav-content">
+    <%= link_to 'Home', root_path, class: "nav-link" %>
+    <%= link_to 'Shop', products_path, class: "nav-link" %>
+    <%= link_to 'About', "https://www.google.ie", class: "nav-link" %>
+    <%= link_to 'View Catalogue', publitas_embed_path , class: "nav-link" %>
+    <div class="cart">
+      <%= link_to cart_path(current_cart), class: "nav-link" do %>
+        <i class="cart-icon">🛒</i>
+        <span id="cart-count"><%= current_cart.cart_items.sum(&:quantity)%></span>
+      <% end %>
+    </div>
+  </div>
+</nav>
+
+

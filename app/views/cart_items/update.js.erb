@@ -1,0 +1,11 @@
+// update publitas cart count
+
+<% if @cart_count  %>
+// update publitas cart count
+parent.postMessage( JSON.stringify(['cartContentChanged', {
+    numItems: <%= j @cart_count %>
+}]), "https://view.publitas.com/" );
+<% end %>
+
+// To reload the view
+location.reload();

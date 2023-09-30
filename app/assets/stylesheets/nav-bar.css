@@ -1,0 +1,47 @@
+/* ======Navbar====== */
+.main-nav {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+}
+
+.nav-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 15px;
+}
+
+.nav-link {
+    color: #fff;
+    text-decoration: none;
+    padding: 5px 15px;
+    margin-right: 10px;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.nav-link:hover {
+    background-color: #555;
+    border-radius: 5px;
+}
+
+.cart {
+    display: flex;
+    align-items: center;
+}
+
+.cart-icon {
+    font-size: 24px;
+    margin-right: 5px;
+}
+
+#cart-count {
+    background-color: #e74c3c;
+    border-radius: 50%;
+    padding: 5px 10px;
+    font-size: 14px;
+    margin-left: 5px;
+}
+

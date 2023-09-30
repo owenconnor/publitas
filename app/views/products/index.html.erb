@@ -1,0 +1,6 @@
+<div class="products-grid">
+  <% @products.each do |product| %>
+    <%= render 'product_card', product: product %>
+    <%= button_to "Add to Cart", add_to_cart_product_path(product), remote: true, class: "button" %>
+  <% end %>
+</div>
