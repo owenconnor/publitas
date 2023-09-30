@@ -19,5 +19,8 @@ Rails.application.routes.draw do
 
   resources :cart_items, only: [:update, :destroy]
 
-  root "products#index"
+  post '/csp-violation-report-endpoint', to: 'csp_reports#create'
+
+  root to: 'custom_pages#publitas_embed'
 end
+

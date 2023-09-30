@@ -21,15 +21,3 @@
     <%#= button_to 'Add to Cart', add_to_cart_product_path(@product), method: :post, remote: true, class: 'button', id:"add-to-cart-button" %>
   </div>
 </div>
-
-
-<script>
-    var productId = <%= @product.id %>;
-    document.getElementById("add-to-cart-button").addEventListener("click", function() {
-        var message = {
-            action: "itemAddedToCart",
-            productId: productId
-        }
-        window.top.postMessage(message, "https://#{ENV['NGROK_HOST']}");
-    });
-</script>

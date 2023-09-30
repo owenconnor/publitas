@@ -9,9 +9,7 @@ Rails.application.config.content_security_policy do |policy|
   policy.font_src    :self, :https, :data
   policy.img_src     :self, :https, :data
   policy.object_src  :none
-  # policy.script_src  "https://view.publitas.com/", :self, :unsafe_inline
-  policy.script_src :self, :https, :unsafe_eval, :unsafe_inline, "https://view.publitas.com/",  -> { "nonce-#{SecureRandom.base64(16)}" }
-
+  policy.script_src  :self, :https, :unsafe_inline, "https://view.publitas.com/"
   policy.style_src   :self, "https://view.publitas.com/", "http://view.publitas.com/"
   policy.frame_src   :self, "https://view.publitas.com/", "http://view.publitas.com/"
   policy.frame_ancestors  :self, "https://view.publitas.com/", "http://view.publitas.com/"
@@ -19,7 +17,7 @@ Rails.application.config.content_security_policy do |policy|
   # policy.connect_src :self, :https, "http://localhost:3035", "ws://localhost:3035" if Rails.env.development?
 
   # Specify URI for violation reports
-  # policy.report_uri "/csp-violation-report-endpoint"
+  policy.report_uri "/csp-violation-report-endpoint"
 end
 
 #If you are using UJS then enable automatic nonce generation

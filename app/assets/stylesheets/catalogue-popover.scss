@@ -56,7 +56,6 @@
 
         h4 {
             margin: 0;
-            color: red;
             text-transform: uppercase;
             font-weight: 500;
             font-size: 12px
@@ -70,13 +69,16 @@
             margin: 0;
         }
 
-        #products-in-cart {
+        #products-in-cart, #view-cart-link {
             font-size: 12px;
             line-height: 20px;
             color: #727272;
             padding: 20px 0;
             margin-left: 25px;
             text-align: center;
+            &:visited {
+                color: #727272;
+            }
         }
 
         .action-button {
